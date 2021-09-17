@@ -1,0 +1,31 @@
+{
+  "name": "panacea",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node ./panacea-interface/server.js & python3 camera_feed.py & python3 camera_feed2.py",
+    "dev": "nodemon ./panacea-interface/templates/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamGreece/panacea.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeamGreece/panacea/issues"
+  },
+  "homepage": "https://github.com/TeamGreece/panacea#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "expressjs": "^1.0.1",
+    "live-server": "^1.2.1",
+    "nodemon": "^2.0.12"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.1"
+  }
+}

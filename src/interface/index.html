@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <title>PANACEA - Web Interface</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="buttons.css">
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <div id="modal" class="modal">
+        <div class="modal-content mx-modal">
+            <!-- <span class="close">&times;</span> -->
+            <div class="mx-modal">
+                <span class="close"></span>
+                <img src="./take-a-photo.png">
+            </div>
+        </div>
+    </div>
+    <div class="page">
+        <div class="vertical-align-custom blue-bg " id="section1">
+            <div class="container section1 centered-section">
+                <div class="container vertical-align-custom mb-4 animated fadeIn title">
+                    <div class="text-center">
+                        <div>
+                            <h1 class="faded text-shadow-strong reveal noselect" style="color:#faad0f;">Panacea</h1>
+                            <p class="text-shadow-strong text-white noselect " > 
+                                Web Interface
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="section2">
+        <h1 class="text-white text-center text-shadow-strong pt-5 noselect">Cameras</h1>
+        <div class="content camera-box mx-auto">
+            <div class="camera-module col-xl-5 col-lg-5 col-md-10 col-sm-12 col-12 mx-auto">
+                <iframe src="http://0.0.0.0:9000" frameborder="0" scrolling="no" class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mx-auto height-iframe" id="iframe2"></iframe>
+                <form id="form1" >
+                    <input type="submit" value="Capture Photo" class='button-new'/>
+                </form>
+            </div>
+            <div class="camera-module col-xl-5 col-lg-5 col-md-10 col-sm-12 col-12 mx-auto">
+                <iframe src="http://localhost:10000" frameborder="0" scrolling="no" class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mx-auto height-iframe" id="iframe2"></iframe>
+                <form id="form2" >
+                    <input type="submit" value="Capture Photo" class='button-new'/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="section3">
+        <h1 class="text-white text-center text-shadow-strong pt-5 noselect">Vital Signs</h1>
+        <div id="iframe-container">
+            <iframe id="text-iframe" src="final_values.html" frameborder="0"></iframe>
+        </div>
+    </div>
+</body>
+<script src="index.js"></script>
+<script src="slideshow.js"></script>
+
+</html>
