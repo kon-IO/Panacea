@@ -41,7 +41,7 @@
   </head>
   <body>
     <div id="data-div">
-      <h1>!Solution 2: WebSocket w/ less bandwidth (my favorite)</h1>
+      <h1>!Solution 2: WebSocket w/ less bandwidth &amp; no iframe (my favorite)</h1>
       <p>
         <span class="yellow"
           >This solution requires modifying the way karpouzi.py<br />
@@ -50,23 +50,30 @@
         The server serves the index page and a final_values.txt file.<br />
         A WebSocket server is also started in another port, and when the<br />
         index page loads, the browser connects to it. When final_values.txt<br />
-        is changed, the WebSocket server messages all clients with the change, and<br />
-        when said clients receive the message, they update the iframe with the <br />
-        new information.
+        is changed, the WebSocket server messages all clients with the change,
+        and<br />
+        when said clients receive the message, they update the page with the<br />
+        new information. (no iframe required)
       </p>
-      <iframe
-        src="./final_values.html"
-        id="data"
-        frameborder="0"
-        name="data_iframe"
-      ></iframe>
+      <div>
+        <p style="font-size: 40px;">Measuring</p>
+        <p style="font-size: 30px;" id="oxygen">Oxygen: 100%</p>
+        <p style="font-size: 30px;" id="heart-rate">Heart Rate: 96BPM</p>
+      </div>
     </div>
     <script type="text/javascript">
       const ws = new WebSocket("ws://localhost:8081/");
+      const oxy = document.getElementById("oxygen");
+      const heart = document.getElementById("heart-rate");
+
+      function update(oxygen, heartRate) {
+        oxy.innerText = `Oxygen: ${parseInt(oxygen, 10)}%`;
+        heart.innerText = `Heart Rate: ${parseInt(heartRate, 10)}BPM`;
+      }
+
       ws.onmessage = (event) => {
-        const val = event.data.split(' ');
-        const iframe = window.data_iframe;
-        iframe.window.update(val[0], val[1]);
+        const val = event.data.split(" ");
+        update(val[0], val[1]);
       };
     </script>
   </body>
