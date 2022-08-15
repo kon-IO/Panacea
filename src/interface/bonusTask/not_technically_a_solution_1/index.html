@@ -23,11 +23,20 @@
         margin-top: 2rem;
       }
 
+      span {
+        text-align: center;
+      }
+
       h1,
       p {
         color: white;
         display: block;
+        text-align: center;
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+
+      .yellow {
+        color: yellow;
       }
     </style>
   </head>
@@ -35,10 +44,12 @@
     <div id="data-div">
       <h1>&excl;Solution 1: Ooga-booga refresh</h1>
       <p>
-        <span class="yellow"
-          >This &quot;solution&quot; requires statically altering<br />
-          final_values.html in karpouzi.py</span
-        >Refresh the iframe at a set interval (see iframe code)
+        <span class="yellow">
+          This &quot;solution&quot; requires statically altering<br />
+          final_values.html in karpouzi.py.
+        </span>
+        Refresh the<br />
+        iframe at a set interval (see iframe code)
       </p>
       <iframe src="final_values.html" id="data" frameborder="0"></iframe>
     </div>
