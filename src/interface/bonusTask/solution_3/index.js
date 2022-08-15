@@ -31,7 +31,7 @@ const wss = new ws.WebSocketServer({ port: 8081 }, () => {
   console.log('WebSocket on port 8081');
 });
 
-fs.watchFile("final_values.html", { interval: 200 }, (cur, prev) => {
+fs.watch("final_values.html", { interval: 200 }, (eventType, filename) => {
   wss.clients.forEach((c) => {
     if (c.readyState === ws.WebSocket.OPEN) {
       c.send("changed");
