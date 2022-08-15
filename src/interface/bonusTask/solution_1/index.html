@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display</title>
+    <style>
+      body {
+        background-color: black;
+      }
+
+      #data-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 95vh;
+      }
+
+      #data {
+        width: 50%;
+        height: 50%;
+        margin-top: 2rem;
+      }
+      
+      h1, p {
+        color: white;
+        display: block;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="data-div">
+      <h1>Solution 1: Ooga-booga refresh</h1>
+      <p>Refresh the iframe at a set interval (see iframe code)</p>
+      <iframe src="final_values.html" id="data" frameborder="0"></iframe>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display</title>
+    <style>
+      body {
+        background-color: black;
+      }
+
+      #data-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 95vh;
+      }
+
+      #data {
+        width: 50%;
+        height: 50%;
+        margin-top: 2rem;
+      }
+
+      h1,
+      p {
+        color: white;
+        display: block;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+
+      p {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="data-div">
+      <h1>Solution 2: More elegant refresh</h1>
+      <p>
+        Refresh the index page at a set interval, while the server responds with<br />
+        unique urls for the final_values.html each time a request for the index page <br />
+        is made, to ensure the browser doesn't display a cached version of the final_values.html page <br />
+        (even though the server responds with status code 200 to all requests instead of 304) <br />
+      </p>
+      <iframe
+        src="./final_values.html/?id={}"
+        id="data"
+        frameborder="0"
+      ></iframe>
+    </div>
+    <script>
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+    </script>
+  </body>
+</html>
