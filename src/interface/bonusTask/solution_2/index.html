@@ -33,12 +33,17 @@
       p {
         text-align: center;
       }
+
+      .green {
+        color: rgba(10, 245, 10, 0.904);
+      }
     </style>
   </head>
   <body>
     <div id="data-div">
-      <h1>Solution 3: WebSocket (my favorite)</h1>
+      <h1>Solution 2: WebSocket (my favorite)</h1>
       <p>
+        <span class="green">This solution works as-is.</span><br />
         The server serves the index page and the values page normally.<br />
         A WebSocket server is also started in another port, and when the<br />
         index page loads, the browser connects to it. When final_values.html<br />
