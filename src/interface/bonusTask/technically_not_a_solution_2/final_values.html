@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <p style="color: white; text-align: center; font-size: 40px">Measuring</p>
+    <p style="color: white; text-align: center; font-size: 30px" id="oxygen">
+      Oxygen: 100%
+    </p>
+    <p style="color: white; text-align: center; font-size: 30px" id="heart-rate">
+      Heart Rate: 96BPM
+    </p>
+  </body>
+  <script type="text/javascript">
+    const oxy = document.getElementById('oxygen');
+    const heart = document.getElementById('heart-rate');
+    function update(oxygen, heartRate) {
+      oxy.innerHTML = `Oxygen: ${parseInt(oxygen, 10)}%`;
+      heart.innerHTML = `Heart Rate: ${parseInt(heartRate, 10)}BPM`;
+    }
+  </script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display</title>
+    <style type="text/css">
+      body {
+        background-color: black;
+      }
+
+      #data-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 95vh;
+      }
+
+      #data {
+        width: 50%;
+        height: 50%;
+        margin-top: 2rem;
+      }
+
+      h1,
+      p {
+        color: white;
+        display: block;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+
+      p {
+        text-align: center;
+      }
+
+      .yellow {
+        color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="data-div">
+      <h1>!Solution 2: WebSocket w/ less bandwidth (my favorite)</h1>
+      <p>
+        <span class="yellow"
+          >This solution requires modifying the way karpouzi.py<br />
+          stores the oxygen and heart rate information.</span
+        ><br />
+        The server serves the index page and a final_values.txt file normally.<br />
+        A WebSocket server is also started in another port, and when the<br />
+        index page loads, the browser connects to it. When final_values.txt<br />
+        is changed, the WebSocket server messages all clients with the change,
+        and<br />
+        when said clients receive the message, they update the iframe with the new information.
+      </p>
+      <iframe
+        src="./final_values.html"
+        id="data"
+        frameborder="0"
+        name="data_iframe"
+      ></iframe>
+    </div>
+    <script type="text/javascript">
+      const ws = new WebSocket("ws://localhost:8081/");
+      ws.onmessage = (event) => {
+        if (event.data === "changed") {
+          const iframe = window.data_iframe;
+          iframe.window.location.reload();
+        }
+      };
+    </script>
+  </body>
+</html>
