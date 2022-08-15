@@ -28,13 +28,15 @@ http
   });
 
 const wss = new ws.WebSocketServer({ port: 8081 }, () => {
-  console.log('WebSocket on port 8081');
+  console.log("WebSocket on port 8081");
 });
 
-fs.watch("final_values.html", { interval: 200 }, (eventType, filename) => {
-  wss.clients.forEach((c) => {
-    if (c.readyState === ws.WebSocket.OPEN) {
-      c.send("changed");
-    }
+fs.watch("final_values.txt", { interval: 200 }, (eventType, filename) => {
+  fs.readFile("final_values.txt", (err, data) => {
+    wss.clients.forEach((c) => {
+      if (c.readyState === ws.WebSocket.OPEN) {
+        c.send(data.toString());
+      }
+    });
   });
 });

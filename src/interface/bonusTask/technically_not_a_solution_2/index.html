@@ -47,12 +47,12 @@
           >This solution requires modifying the way karpouzi.py<br />
           stores the oxygen and heart rate information.</span
         ><br />
-        The server serves the index page and a final_values.txt file normally.<br />
+        The server serves the index page and a final_values.txt file.<br />
         A WebSocket server is also started in another port, and when the<br />
         index page loads, the browser connects to it. When final_values.txt<br />
-        is changed, the WebSocket server messages all clients with the change,
-        and<br />
-        when said clients receive the message, they update the iframe with the new information.
+        is changed, the WebSocket server messages all clients with the change, and<br />
+        when said clients receive the message, they update the iframe with the <br />
+        new information.
       </p>
       <iframe
         src="./final_values.html"
@@ -64,10 +64,9 @@
     <script type="text/javascript">
       const ws = new WebSocket("ws://localhost:8081/");
       ws.onmessage = (event) => {
-        if (event.data === "changed") {
-          const iframe = window.data_iframe;
-          iframe.window.location.reload();
-        }
+        const val = event.data.split(' ');
+        const iframe = window.data_iframe;
+        iframe.window.update(val[0], val[1]);
       };
     </script>
   </body>
