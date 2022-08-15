@@ -1,6 +1,5 @@
 const http = require("http");
 const fs = require("fs");
-const url = require("url");
 
 const index = fs.readFileSync("index.html").toString();
 var randomNubers = [];
