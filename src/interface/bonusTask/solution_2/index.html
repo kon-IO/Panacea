@@ -37,23 +37,29 @@
   </head>
   <body>
     <div id="data-div">
-      <h1>Solution 2: More elegant refresh</h1>
+      <h1>Solution 3: WebSocket (my favorite)</h1>
       <p>
-        Refresh the index page at a set interval, while the server responds with<br />
-        unique urls for the final_values.html each time a request for the index page <br />
-        is made, to ensure the browser doesn't display a cached version of the final_values.html page <br />
-        (even though the server responds with status code 200 to all requests instead of 304) <br />
+        The server serves the index page and the values page normally.<br />
+        A WebSocket server is also started in another port, and when the<br />
+        index page loads, the browser connects to it. When final_values.html<br />
+        is changed, the WebSocket server messages all clients about the change, and<br />
+        when said clients receive the message, they reload the iframe containing final_values.html.
       </p>
       <iframe
-        src="./final_values.html/?id={}"
+        src="./final_values.html"
         id="data"
         frameborder="0"
+        name="data_iframe"
       ></iframe>
     </div>
     <script type="text/javascript">
-      setTimeout(() => {
-        location.reload();
-      }, 1000);
+      const ws = new WebSocket('ws://localhost:8081/');
+      ws.onmessage = event => {
+        if (event.data === 'changed') {
+          const iframe = window.data_iframe;
+          iframe.window.location.reload();
+        }
+      };
     </script>
   </body>
 </html>

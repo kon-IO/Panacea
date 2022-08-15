@@ -1,10 +1,7 @@
 const http = require("http");
 const fs = require("fs");
-const ws = require("ws");
 
-const index = fs.readFileSync("index.html");
-
-console.warn("DO NOT USE THIS SERVER FOR PRODUCTION!!!");
+const index = fs.readFileSync('index.html');
 
 http
   .createServer((req, res) => {
@@ -24,17 +21,6 @@ http
     res.end("<html><head></head><body><h1>Not Found</h1></body></html>");
   })
   .listen(8080, () => {
-    console.log("Listening on port 8080");
+    console.warn('DO NOT USE THIS SERVER FOR PRODUCTION!!!');
+    console.log('Listening on port 8080');
   });
-
-const wss = new ws.WebSocketServer({ port: 8081 }, () => {
-  console.log('WebSocket on port 8081');
-});
-
-fs.watch("final_values.html", { interval: 200 }, (eventType, filename) => {
-  wss.clients.forEach((c) => {
-    if (c.readyState === ws.WebSocket.OPEN) {
-      c.send("changed");
-    }
-  });
-});

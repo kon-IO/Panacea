@@ -1,26 +1,19 @@
 const http = require("http");
 const fs = require("fs");
+const ws = require("ws");
 
-const index = fs.readFileSync("index.html").toString();
-var randomNubers = [];
+const index = fs.readFileSync("index.html");
 
-function genNewRandomNumber() {
-  let randomNum;
-  do {
-    randomNum = Math.floor(Math.random() * 10000000);
-  } while (randomNubers.includes(randomNum));
-  randomNubers.push(randomNum);
-  return randomNum;
-}
+console.warn("DO NOT USE THIS SERVER FOR PRODUCTION!!!");
 
 http
   .createServer((req, res) => {
     const file = req.url;
     if (file === "/" || file === "/index.html") {
       res.writeHead(200, { "Content-Type": "text/html" });
-      res.end(index.replace("{}", genNewRandomNumber()));
+      res.end(index);
       return;
-    } else if (file.startsWith("/final_values.html")) {
+    } else if (file === "/final_values.html") {
       res.writeHead(200, { "Content-Type": "text/html" });
       fs.readFile("./final_values.html", { encoding: "utf-8" }, (err, data) => {
         res.end(data);
@@ -31,6 +24,17 @@ http
     res.end("<html><head></head><body><h1>Not Found</h1></body></html>");
   })
   .listen(8080, () => {
-    console.warn('DO NOT USE THIS SERVER FOR PRODUCTION!!!');
-    console.log('Listening on port 8080');
+    console.log("Listening on port 8080");
   });
+
+const wss = new ws.WebSocketServer({ port: 8081 }, () => {
+  console.log('WebSocket on port 8081');
+});
+
+fs.watch("final_values.html", { interval: 200 }, (eventType, filename) => {
+  wss.clients.forEach((c) => {
+    if (c.readyState === ws.WebSocket.OPEN) {
+      c.send("changed");
+    }
+  });
+});
